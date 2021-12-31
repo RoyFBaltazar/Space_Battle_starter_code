@@ -1,3 +1,13 @@
+//  alert("click anywhere to start")
+//  document.addEventListener('click',readyToPlay())
+//  function readyToPlay (){
+// let play = prompt("Do you want to play?")
+// if(play === "yes"){
+//     battle()
+// } else{
+//     console.log("are you sure?")
+// }
+//  }
 class Earth{
     constructor(ship){
       this.ship = ship;
@@ -31,34 +41,49 @@ class Alien{
         {console.log("missed")}
         }
 }
+const enemyImgs = document.getElementById('enemyImg')
 let earthShips = new Earth('earth')
 let alienShipsArr = []
 // function to create aliens 
 for (let i=0; i < 6; i++){
  let newAliens = new Alien()
- alienShipsArr.push(newAliens)
+//  const newAlienImg = document.createElement('img');
+//  newAlienImg.setAttribute('src', "/images/enemy.gif")
+//  enemyImgs.appendChild(newAlienImg)
+//  alienShipsArr.push(newAliens)
+ 
  }
 let battle = () => {
- while (alienShipsArr[5] !== 0){
+ while (alienShipsArr > 0){
    if (earthShips.hull > 0){
      if (Math.random() < .7){
        console.log("hit")
-       earthShips.attack(alienShipsArr[0])
+       earthShips.attack(alienShipsArr)
      }
        }
        else{console.log("over")
          }
      }
-     if (alienShipsArr[0].hull > 0){
+     if (alienShipsArr.hull > 0){
        alienShipsArr.attack(earthShips)}
        
        else  {
          alienShipsArr.shift()
          if (alienShipsArr.length === 0){console.log("its over")}}
-         let attack_retreat = prompt ("attack or retreat")
+         let attack_retreat = prompt(`your health is ${earthShips.hull}, attack or retreat`)
          if (attack_retreat=== "attack"){
-           continue}
+            earthShips.attack(alienShipsArr) }
            else {
-             console.log("over")}
+            alert("over")
+            }
    }
- 
+//    alert("click anywhere to start")
+   document.addEventListener('click',readyToPlay())
+   function readyToPlay (){
+  let play = prompt("Do you want to play?")
+  if(play === "yes"){
+    battle()
+} else{
+    console.log("are you sure?")
+}
+ }
