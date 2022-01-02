@@ -17,7 +17,8 @@ class Earth{
     }
     attack(enemy){
      if (Math.random() < this.accuracy){
-      enemy.hull -= this.firepower}
+      enemy.hull -= this.firepower;
+    alert("hit")}
        if(enemy.hull <= 0){
         console.log(`${enemy.ship} is dead`)}
         else 
@@ -41,7 +42,7 @@ class Alien{
         {console.log("missed")}
         }
 }
-const enemyImgs = document.getElementById('enemyImg')
+const enemyImgs = document.getElementById("enemyimage")
 let earthShips = new Earth('earth')
 let alienShipsArr = []
 // function to create aliens 
@@ -50,26 +51,29 @@ for (let i=0; i < 6; i++){
 //  const newAlienImg = document.createElement('img');
 //  newAlienImg.setAttribute('src', "/images/enemy.gif")
 //  enemyImgs.appendChild(newAlienImg)
-//  alienShipsArr.push(newAliens)
+  alienShipsArr.push(newAliens)
  
  }
 let battle = () => {
- while (alienShipsArr > 0){
+ while (alienShipsArr.length > 0){
    if (earthShips.hull > 0){
      if (Math.random() < .7){
-       console.log("hit")
        earthShips.attack(alienShipsArr)
+      
      }
        }
-       else{console.log("over")
+       else{
+           alert("missed")
+           console.log("try again ")
          }
+         console.log(`${earthShips.hull} ${alienShipsArr.hull}`)
      }
      if (alienShipsArr.hull > 0){
        alienShipsArr.attack(earthShips)}
        
        else  {
          alienShipsArr.shift()
-         if (alienShipsArr.length === 0){console.log("its over")}}
+         if (alienShipsArr.length === 0){console.log(alienShipsArr.length)}}
          let attack_retreat = prompt(`your health is ${earthShips.hull}, attack or retreat`)
          if (attack_retreat=== "attack"){
             earthShips.attack(alienShipsArr) }
@@ -78,12 +82,18 @@ let battle = () => {
             }
    }
 //    alert("click anywhere to start")
-   document.addEventListener('click',readyToPlay())
-   function readyToPlay (){
-  let play = prompt("Do you want to play?")
+//    document.addEventListener("click",readyToPlay())
+//    const myTimeout = setTimeout(readyToPlay(), 20000)
+
+
+
+alert("slide your mouse over t0 the Enemy Image to start")
+function readyToPlay (){
+    let play = prompt("Do you want to play?")
   if(play === "yes"){
-    battle()
+   setTimeout= (battle(), 5000)
 } else{
     console.log("are you sure?")
 }
  }
+ enemyImgs.addEventListener("mouseover",readyToPlay)
